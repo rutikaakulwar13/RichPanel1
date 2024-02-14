@@ -1,12 +1,12 @@
 // Replace 'YOUR_ACCESS_TOKEN' with your actual access token
-const ACCESS_TOKEN = 'YOUR_ACCESS_TOKEN';
+const ACCESS_TOKEN = '2099746917061591';
 const PAGE_ID = 'YOUR_PAGE_ID';
 const FB_GRAPH_API = 'https://graph.facebook.com/v12.0/';
 
 // Fetch conversations and display them
 function fetchConversations() {
     // Fetch conversations using Facebook Graph API
-    fetch(`${FB_GRAPH_API}${PAGE_ID}/conversations?access_token=${ACCESS_TOKEN}`)
+    fetch(`${FB_GRAPH_API}${PAGE_ID}/conversations?access_token=${EAAFfTbyRNTEBO2mQA4SGxaJCUARO7cryDuEHfTdKgi5FLmr9CyQZCWYaKF4yKfRRs6iwZCg3sDmDdk5ElJyvR5hUH0YZAc077FSCQcWM3xPMwTSuaKa2ZBZBUhmhNQlhMyt8WFCeCjwJc8mvXxQHZCqHuNZA58FyOoTQaGlAJLlGgSBmo1Wti7QShStB6PEZCRZBZClwZDZD}`)
         .then(response => response.json())
         .then(data => {
             const conversationList = document.getElementById('conversation-list');
@@ -24,7 +24,7 @@ function fetchConversations() {
 // Fetch messages for a specific conversation
 function fetchMessages(conversationId) {
     // Fetch messages using Facebook Graph API
-    fetch(`${FB_GRAPH_API}${conversationId}/messages?access_token=${ACCESS_TOKEN}`)
+    fetch(`${FB_GRAPH_API}${conversationId}/messages?access_token=${EAAFfTbyRNTEBO2mQA4SGxaJCUARO7cryDuEHfTdKgi5FLmr9CyQZCWYaKF4yKfRRs6iwZCg3sDmDdk5ElJyvR5hUH0YZAc077FSCQcWM3xPMwTSuaKa2ZBZBUhmhNQlhMyt8WFCeCjwJc8mvXxQHZCqHuNZA58FyOoTQaGlAJLlGgSBmo1Wti7QShStB6PEZCRZBZClwZDZD}`)
         .then(response => response.json())
         .then(data => {
             const conversationThread = document.getElementById('conversation-thread');
