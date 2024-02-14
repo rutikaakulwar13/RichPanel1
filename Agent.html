@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conversation Viewer</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        display: flex;
+        height: 100vh;
+    }
+    .conversation-list {
+        flex: 1;
+        border-right: 1px solid #ccc;
+        padding: 20px;
+        overflow-y: auto;
+    }
+    .conversation-list-item {
+        cursor: pointer;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+    }
+    .conversation-list-item:hover {
+        background-color: #f0f0f0;
+    }
+    .conversation-thread {
+        flex: 2;
+        padding: 20px;
+        overflow-y: auto;
+    }
+    .customer-profile {
+        flex: 1;
+        padding: 20px;
+        border-left: 1px solid #ccc;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="conversation-list">
+        <div class="conversation-list-item" onclick="showConversation(1)">Conversation 1</div>
+        <div class="conversation-list-item" onclick="showConversation(2)">Conversation 2</div>
+        <div class="conversation-list-item" onclick="showConversation(3)">Conversation 3</div>
+        <!-- Add more conversation items as needed -->
+    </div>
+    <div class="conversation-thread" id="conversation-thread">
+        <!-- Conversation thread content will be dynamically populated here -->
+    </div>
+    <div class="customer-profile" id="customer-profile">
+        <!-- Customer profile content will be dynamically populated here -->
+    </div>
+</div>
+
+<script>
+    function showConversation(conversationId) {
+        // Example data - Replace with your logic to fetch conversation details
+        var conversationData = {
+            thread: "This is the conversation thread for Conversation " + conversationId,
+            customerName: "Customer " + conversationId,
+            customerProfile: "Customer Profile for Conversation " + conversationId
+        };
+
+        // Update conversation thread content
+        document.getElementById("conversation-thread").innerText = conversationData.thread;
+
+        // Update customer profile content
+        document.getElementById("customer-profile").innerText = conversationData.customerProfile;
+    }
+</script>
+
+</body>
+</html>

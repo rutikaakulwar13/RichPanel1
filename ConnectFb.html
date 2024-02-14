@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connect fb</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #316FF6; /* Blue background color */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    
+    .login-container {
+      background-color: #fff; /* White background color for the login container */
+      border-radius: 15px; /* Rounded corners */
+      padding: 40px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+      width: 400px;
+    }
+    
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="password"],
+    .form-group input[type="submit"],
+    .form-group input[type="checkbox"] {
+      width: calc(100% - 22px);
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      display: inline-block;
+    }
+
+    .form-group input[type="checkbox"] {
+      width: auto;
+    }
+    
+    .form-group input[type="submit"] {
+      background-color: #316FF6;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .login-link a {
+      color: #316FF6;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+    <script>
+
+        function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
+          console.log('statusChangeCallback');
+          console.log(response);                   // The current login status of the person.
+          if (response.status === 'connected') {   // Logged into your webpage and Facebook.
+            testAPI();  
+          } else {                                 // Not logged into your webpage or we are unable to tell.
+            document.getElementById('status').innerHTML = 'Please log ' +
+              'into this webpage.';
+          }
+        }
+      
+      
+        function checkLoginState() {               // Called when a person is finished with the Login Button.
+          FB.getLoginStatus(function(response) {   // See the onlogin handler
+            statusChangeCallback(response);
+          });
+        }
+      
+      
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '386262457464113',
+            cookie     : true,                     // Enable cookies to allow the server to access the session.
+            xfbml      : true,                     // Parse social plugins on this webpage.
+            version    : 'v3.2'           // Use this Graph API version for this call.
+          });
+      
+      
+          FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
+            statusChangeCallback(response);        // Returns the login status.
+          });
+        };
+       
+        function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
+          console.log('Welcome!  Fetching your information.... ');
+          FB.api('/me', function(response) {
+            console.log('Successful login for: ' + response.name);
+            document.getElementById('status').innerHTML =
+              'Thanks for logging in, ' + response.name + '!';
+          });
+        }
+      
+      </script>
+
+
+<div class="login-container">
+  <h2>Facebook Page Integration</h2>
+  <form action="#">
+    <div class="form-group">
+        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>
+   <input type="submit" value="Connect Page" >
+
+    </div>
+    <div id="status">
+    </div>
+  </form>
+ 
+</div>
+
+
+<!-- Load the JS SDK asynchronously -->
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+</body>
+</html>
