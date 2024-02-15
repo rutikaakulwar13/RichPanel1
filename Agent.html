@@ -38,21 +38,46 @@
         padding: 20px;
         border-left: 1px solid #ccc;
     }
+    .vertical-bar {
+        display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  height: 100rem; /* Adjust height as needed */
+  width: 50px;
+  background-color: rgb(103, 104, 151);
+}
+
+.icon {
+  font-size: 24px; /* Adjust size as needed */
+  color: #fffefe; /* Adjust color as needed */
+  line-height: 1;
+  margin: 10px;
+}
+
 </style>
 </head>
 <body>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <div class="container">
+    <div class="vertical-bar">
+        <span class="icon"><i class="fa fa-home"></i></span>
+        <span class="icon"><i class="fa fa-user"></i></span>
+        <span class="icon"><i class="fa fa-envelope"></i></span>
+        <span class="icon"><i class="fa fa-cog"></i></span>
+      </div>
+      
     <div class="conversation-list">
+        <h2>Conversations</h2>
         <div class="conversation-list-item" onclick="showConversation('Amit RG')">Amit RG</div>
-        <div class="conversation-list-item" onclick="showConversation('Hitest Saxena')">Hitest Saxena</div>
-        <div class="conversation-list-item" onclick="showConversation(3)">Conversation 3</div>
+        <div class="conversation-list-item" onclick="showConversation('Hitesh Saxena')">Hitesh Saxena</div>
+        <div class="conversation-list-item" onclick="showConversation('Rutika')">Rutika</div>
+        <!-- <div class="conversation-list-item" onclick="showConversation(3)">Conversation 3</div> -->
         <!-- Add more conversation items as needed -->
     </div>
     <div class="conversation-thread" id="conversation-thread">
         <!-- Conversation thread content will be dynamically populated here -->
     </div>
-    <div class="customer-profile" id="customer-profile">
+    <div class="customer-profile" id="customer-profile" style="background-color: rgb(226, 224, 224);">
         <!-- Customer profile content will be dynamically populated here -->
     </div>
 </div>
@@ -62,15 +87,39 @@
         // Example data - Replace with your logic to fetch conversation details
         var conversationData = {
             thread: "This is the conversation thread for Conversation " + conversationId,
-            customerName: "Customer " + conversationId,
-            customerProfile: "Customer Profile for Conversation " + conversationId
+            customerName: "" + conversationId,
+            customerProfile: "Customer Profile for Conversation " + conversationId,
+            profilePic:"https://cdn-icons-png.flaticon.com/512/6833/6833591.png",
+            firstName:conversationId,
+            email: conversationId+"@gmail.com"
         };
 
         // Update conversation thread content
-        document.getElementById("conversation-thread").innerText = conversationData.thread;
+        document.getElementById("conversation-thread").innerHTML = `
+            <h2>${conversationData.customerName}</h2>
+            <p>${conversationData.thread}</p>
+            <hr>
+            <textarea style="margin-top:28rem; width: 30rem;" placeholder="Type your message here..."></textarea>
+            <button>Send</button>
+        `;
 
         // Update customer profile content
-        document.getElementById("customer-profile").innerText = conversationData.customerProfile;
+        document.getElementById("customer-profile").innerHTML = `
+            <div class="profile-section" style="background-color:#fff; padding:5px;">
+                <img src="${conversationData.profilePic}" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%;">            
+                <div style="align:center;">
+                <button ><i class="fa fa-user"></i>Call</button>
+                <button><i class="fa fa-phone"></i>Profile</button>
+                </div>
+            </div>
+            <div class="profile-section" style="background-color:#fff; align:center; padding:5px;  border-radius: 5px; margin-top:5px;">
+                <h2>Customer Details</h2>
+                <p>${conversationData.customerProfile}</p>
+                <p>Email: ${conversationData.email}</p>
+                <p>Name: ${conversationData.firstName}</p>
+                <a href="${conversationData.viewMoreLink}">View more details</a>
+            </div>
+        `;
     }
 </script>
 
